@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.luxu.springsecurityjwt.mapper.TRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.luxu.springsecurityjwt.entity.TRole">
+        <id column="id" property="id" />
+        <result column="role_name" property="roleName" />
+    </resultMap>
+
+    <select id="getRolesByUserId" resultType="cn.luxu.springsecurityjwt.entity.TRole"
+            parameterType="java.lang.Integer">
+        select t_role.id, role_name from t_role left join t_user_roles tur on t_role.id = tur.role_id where tur.user_id = #{id};
+    </select>
+
+</mapper>
